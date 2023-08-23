@@ -1,5 +1,5 @@
 resource "exoscale_security_group" "sks" {
-  name = coalesce(var.sks_security_group, var.sks_name)
+  name = coalesce(var.sks_security_group, terraform.workspace)
 }
 
 resource "exoscale_security_group_rule" "sks" {
