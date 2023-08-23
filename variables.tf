@@ -27,11 +27,6 @@ variable "sks_zone" {
   default     = "de-fra-1"
 }
 
-variable "sks_name" {
-  description = "SKS control plane name"
-  type        = string
-}
-
 variable "sks_description" {
   description = "SKS control plane description"
   type        = string
@@ -70,23 +65,6 @@ variable "sks_cni" {
   description = "Network plugin (may only be set at creation time)."
   type        = string
   default     = "cilium"
-}
-
-# Rancher provider configuration
-variable "rancher_api_url" {
-  description = "API URL for the Rancher management server"
-  type        = string
-  default     = "https://rancher.vshn.net/v3"
-}
-
-variable "rancher_access_key" {
-  description = "Rancher API token name"
-  type        = string
-}
-
-variable "rancher_secret_key" {
-  description = "Rancher API token secret"
-  type        = string
 }
 
 variable "worker_anti_affinity_groups" {
