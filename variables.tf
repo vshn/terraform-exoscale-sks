@@ -72,3 +72,9 @@ variable "worker_anti_affinity_groups" {
   type        = set(string)
   default     = []
 }
+
+variable "sks_worker_labels" {
+  description = "SKS worker labels"
+  type        = map(any)
+  default     = {}
+}

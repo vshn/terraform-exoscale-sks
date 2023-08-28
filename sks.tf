@@ -30,9 +30,7 @@ resource "exoscale_sks_nodepool" "workers" {
   security_group_ids      = [exoscale_security_group.sks.id]
   anti_affinity_group_ids = [for group in exoscale_anti_affinity_group.sks_anti_affinity_group : group.id]
 
-  labels = {
-    "cloud.fusedeck/nodetype" = "worker"
-  }
+  labels = merge(var.sks_worker_labels, { "role" = "worker" })
 }
 
 resource "exoscale_sks_kubeconfig" "sks_cluster_admin" {
