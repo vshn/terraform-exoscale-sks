@@ -13,6 +13,7 @@ resource "exoscale_security_group_rule" "sks" {
     cilium_vxlan_sg       = { description = "cilium VXLAN overlay", protocol = "UDP", port = 8472, sg = exoscale_security_group.sks.id }
     cilium_healthcheck_sg = { description = "cilium health check", protocol = "TCP", port = 4240, sg = exoscale_security_group.sks.id }
     nlb_healthcheck       = { description = "nlb tcp health check", protocol = "TCP", port = "30000-32767", psg = "public-nlb-healthcheck-sources" }
+    calico_vxlan_sg       = { description = "calico VXLAN", protocol = "UDP", port = 4789, sg = exoscale_security_group.sks.id }
   }
 
   security_group_id      = exoscale_security_group.sks.id
