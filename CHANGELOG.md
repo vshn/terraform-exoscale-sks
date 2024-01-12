@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.4
+- Add support for multiple nodepools
+
 ## v1.0.2
 - Add security group rule for calico VXLAN
 
