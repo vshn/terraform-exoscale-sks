@@ -1,5 +1,7 @@
 # Changelog
 
+## v1.0.5
+- Update nodepool instance prefix
 ## v1.0.4
 - Add support for multiple nodepools
 
