@@ -28,7 +28,7 @@ resource "exoscale_sks_nodepool" "workers" {
   cluster_id              = exoscale_sks_cluster.sks_cluster.id
   name                    = each.value.name
   instance_type           = each.value.instance_type
-  instance_prefix         = "worker-${each.value.name}"
+  instance_prefix         = each.value.name
   size                    = each.value.size
   disk_size               = each.value.disk_size
   security_group_ids      = [exoscale_security_group.sks.id]
