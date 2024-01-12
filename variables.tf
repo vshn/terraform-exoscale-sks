@@ -3,22 +3,27 @@ variable "sks_security_group" {
   type        = string
   default     = null
 }
-
-variable "sks_worker_disk_size" {
-  description = "SKS worker disk size"
-  type        = number
-  default     = 100
-}
-variable "sks_nodepool_size" {
-  description = "SKS nodepool size"
-  type        = number
-  default     = 4
-}
-
-variable "sks_worker_instance_type" {
-  description = "SKS worker instance type"
-  type        = string
-  default     = "standard.extra-large"
+variable "sks_node_pools" {
+  description = "List of node pool configurations"
+  nullable    = false
+  type = list(object({
+    name                 = string
+    instance_type        = string
+    size                 = number
+    disk_size            = number
+    anti_affinity_groups = list(string)
+    labels               = map(string)
+  }))
+  default = [
+    {
+      name                 = "default"
+      instance_type        = "standard.extra-large"
+      size                 = 3
+      disk_size            = 100
+      anti_affinity_groups = []
+      labels               = {}
+    }
+  ]
 }
 
 variable "sks_zone" {
@@ -65,16 +70,4 @@ variable "sks_cni" {
   description = "Network plugin (may only be set at creation time)."
   type        = string
   default     = "cilium"
-}
-
-variable "worker_anti_affinity_groups" {
-  description = "Anti Affinity groups for worker node pool"
-  type        = set(string)
-  default     = []
-}
-
-variable "sks_worker_labels" {
-  description = "SKS worker labels"
-  type        = map(any)
-  default     = {}
 }
