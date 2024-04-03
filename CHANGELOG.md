@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.8
+- Update Terraform exoscale to v0.57.0
+
 ## v1.0.7
 - Update Terraform exoscale to v0.56.0
 
