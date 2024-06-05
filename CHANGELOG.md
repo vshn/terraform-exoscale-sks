@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.10
+- Remove provider version pinning
+
+## v1.0.9
+- Update Terraform exoscale to v0.59.1
+
 ## v1.0.8
 - Update Terraform exoscale to v0.57.0
 
