@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.11
+- Ignore cluster version to avoid drift when auto-updates are applied
+
 ## v1.0.10
 - Remove provider version pinning
 
