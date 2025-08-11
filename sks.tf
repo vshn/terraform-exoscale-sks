@@ -14,6 +14,12 @@ resource "exoscale_sks_cluster" "sks_cluster" {
   service_level  = var.sks_service_level
   version        = var.sks_version
   cni            = var.sks_cni
+
+  lifecycle {
+    ignore_changes = [
+      version
+    ]
+  }
 }
 
 resource "exoscale_anti_affinity_group" "sks_anti_affinity_group" {
