@@ -40,6 +40,12 @@ resource "exoscale_sks_nodepool" "workers" {
   security_group_ids      = [exoscale_security_group.sks.id]
   anti_affinity_group_ids = [for group in each.value.anti_affinity_groups : exoscale_anti_affinity_group.sks_anti_affinity_group[group].id]
   labels                  = merge({ "role" = "worker" }, each.value.labels)
+
+  lifecycle {
+    ignore_changes = [
+      size
+    ]
+  }
 }
 
 
