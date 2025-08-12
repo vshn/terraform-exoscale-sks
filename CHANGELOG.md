@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.12
+- Ignore changes to cluster size as a result of cluster auto-scaling
+
 ## v1.0.11
 - Ignore cluster version to avoid drift when auto-updates are applied
 
