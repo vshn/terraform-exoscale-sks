@@ -30,16 +30,19 @@ resource "exoscale_anti_affinity_group" "sks_anti_affinity_group" {
 resource "exoscale_sks_nodepool" "workers" {
   for_each = { for np in var.sks_node_pools : np.name => np }
 
-  zone                    = var.sks_zone
-  cluster_id              = exoscale_sks_cluster.sks_cluster.id
-  name                    = each.value.name
-  instance_type           = each.value.instance_type
-  instance_prefix         = each.value.name
-  size                    = each.value.size
-  disk_size               = each.value.disk_size
-  security_group_ids      = [exoscale_security_group.sks.id]
-  anti_affinity_group_ids = [for group in each.value.anti_affinity_groups : exoscale_anti_affinity_group.sks_anti_affinity_group[group].id]
-  labels                  = merge({ "role" = "worker" }, each.value.labels)
+  zone               = var.sks_zone
+  cluster_id         = exoscale_sks_cluster.sks_cluster.id
+  name               = each.value.name
+  instance_type      = each.value.instance_type
+  instance_prefix    = each.value.name
+  size               = each.value.size
+  disk_size          = each.value.disk_size
+  security_group_ids = [exoscale_security_group.sks.id]
+  anti_affinity_group_ids = length(each.value.anti_affinity_groups) == 0 ? null : [
+    for group in each.value.anti_affinity_groups :
+    exoscale_anti_affinity_group.sks_anti_affinity_group[group].id
+  ]
+  labels = merge({ "role" = "worker" }, each.value.labels)
 
   lifecycle {
     ignore_changes = [

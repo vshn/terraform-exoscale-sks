@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.1.0
+- Fix issues with terrraform exoscale v0.73.0
+
 ## v1.0.12
 - Ignore changes to cluster size as a result of cluster auto-scaling
 
